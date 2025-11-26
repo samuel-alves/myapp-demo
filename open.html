@@ -28,7 +28,6 @@
 <h1>Opening your app...</h1>
 <p>If the app does not open automatically, tap the button below.</p>
 
-<a id="fallback" class="btn">Abrir App</a>
 
 <script>
   const params = new URLSearchParams(window.location.search);
@@ -36,12 +35,18 @@
 
   // Android App Links: Android intercepta este link AUTOMATICAMENTE
   const appLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
+  const fallbackIntent =
+    `intent://open?screen=${screen}` +
+    `#Intent;scheme=https;package=com.loba.sf.connector.softpos;end;`;
+  
+  const fallbackCustomScheme = `sfsoftpos://open?screen=screen1`;
 
-  // NÃO FAZEMOS redirect para evitar o loop
-  // Android faz o override automaticamente quando o app está instalado
-
-  document.getElementById("fallback").href = appLink;
+  document.getElementById("fallback-deep-intent").href = fallbackIntent;
+  document.getElementById("fallback-custom-scheme").href = fallbackCustomScheme;
 </script>
+
+<a id="fallback-deep-intent" class="btn">Android deep intent</a>
+<a id="fallback-custom-scheme" class="btn">Custom scheme</a>
 
 </body>
 </html>
