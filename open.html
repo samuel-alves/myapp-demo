@@ -28,6 +28,8 @@
 <h1>Opening your app...</h1>
 <p>If the app does not open automatically, tap the button below.</p>
 
+<a id="fallback" class="btn">Abrir App</a>
+
 <script>
   const params = new URLSearchParams(window.location.search);
   const screen = params.get("screen") || "default";
@@ -40,8 +42,6 @@
 
   document.getElementById("fallback").href = appLink;
 </script>
-
-<a id="fallback" class="btn">Abrir App</a>
 
 </body>
 </html>
