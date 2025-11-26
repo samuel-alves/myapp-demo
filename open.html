@@ -3,47 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open App</title>
+  <title>Opening App...</title>
   <style>
-    body { 
-      font-family: Arial; 
-      padding: 40px; 
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
       text-align: center;
     }
-    .open {
+    a.btn {
       display: inline-block;
-      padding: 14px 24px;
-      margin: 12px;
+      padding: 14px 20px;
+      margin-top: 20px;
       background: #0055ff;
       color: white;
-      border-radius: 8px;
+      border-radius: 6px;
       text-decoration: none;
-      font-size: 18px;
     }
   </style>
 </head>
 <body>
 
+<h1>Opening your app...</h1>
+<p>If the app does not open automatically, tap the button below.</p>
+
 <script>
-  // Extract ?screen=screen1
   const params = new URLSearchParams(window.location.search);
   const screen = params.get("screen") || "default";
 
-  // Build the app link
-  const appLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
+  // Android will automatically intercept this URL as an App Link
+  const androidLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
 
-  // Redirect immediately (Android App Links will auto-open the app)
-  window.location.href = `intent://open?screen=${screen}#Intent;scheme=https;package=com.loba.sf.connector.softpos;end;`;
+  // Manual fallback using intent: link (works if App Link is not configured)
+  const intentLink =
+    `intent://open?screen=${screen}` +
+    `#Intent;scheme=https;package=com.loba.sf.connector.softpos;end;`;
+
+  // Try to open the app WITHOUT reloading this page into a loop
+  window.location.replace(intentLink);
+
+  // Fallback button
+  window.onload = () => {
+    document.getElementById("fallback").href = intentLink;
+  }
 </script>
 
-<h1>Opening the app…</h1>
-<p>If nothing happens, tap the button below:</p>
-
-<a id="fallback" class="open" href="#">Open App Manually</a>
-
-<script>
-  document.getElementById("fallback").href = appLink;
-</script>
+<a id="fallback" class="btn">Open App</a>
 
 </body>
 </html>
