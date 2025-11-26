@@ -33,7 +33,7 @@
   const appLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
 
   // Redirect immediately (Android App Links will auto-open the app)
-  window.location.href = appLink;
+  window.location.href = `intent://open?screen=${screen}#Intent;scheme=https;package=com.loba.sf.connector.softpos;end;`;
 </script>
 
 <h1>Opening the app…</h1>
