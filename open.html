@@ -41,8 +41,13 @@
   
   const fallbackCustomScheme = `sfsoftpos://open?screen=screen1`;
 
-  document.getElementById("fallback-deep-intent").href = fallbackIntent;
-  document.getElementById("fallback-custom-scheme").href = fallbackCustomScheme;
+  window.onload = () => {
+    document.getElementById("fallback-deep-intent").href = fallbackIntent;
+    document.getElementById("fallback-custom-scheme").href = fallbackCustomScheme;
+  };
+
+  // Try to open the app WITHOUT reloading this page into a loop
+  window.location.replace(fallbackIntent);
 </script>
 
 <a id="fallback-deep-intent" class="btn">Android deep intent</a>
