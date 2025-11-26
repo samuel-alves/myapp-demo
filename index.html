@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyApp Demo Deep Links</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+    h1 { color: #333; }
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      margin: 12px;
+      background: #0055ff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .btn:hover { background: #003fcc; }
+  </style>
 </head>
 <body>
-    <h1>DEMO APP</h1>
+
+  <h1>Android App Links Demo</h1>
+  <p>Tap one of the buttons below to open the Android app:</p>
+
+  <a class="btn" href="./open.html?screen=screen1">Open Screen 1</a>
+  <a class="btn" href="./open.html?screen=screen2">Open Screen 2</a>
+
 </body>
 </html>

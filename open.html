@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open App</title>
+  <style>
+    body { 
+      font-family: Arial; 
+      padding: 40px; 
+      text-align: center;
+    }
+    .open {
+      display: inline-block;
+      padding: 14px 24px;
+      margin: 12px;
+      background: #0055ff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // Extract ?screen=screen1
+  const params = new URLSearchParams(window.location.search);
+  const screen = params.get("screen") || "default";
+
+  // Build the app link
+  const appLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
+
+  // Redirect immediately (Android App Links will auto-open the app)
+  window.location.href = appLink;
+</script>
+
+<h1>Opening the app…</h1>
+<p>If nothing happens, tap the button below:</p>
+
+<a id="fallback" class="open" href="#">Open App Manually</a>
+
+<script>
+  document.getElementById("fallback").href = appLink;
+</script>
+
+</body>
+</html>
