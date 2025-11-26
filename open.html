@@ -28,6 +28,9 @@
 <h1>Opening your app...</h1>
 <p>If the app does not open automatically, tap the button below.</p>
 
+<a id="fallback-deep-intent" class="btn">Android deep intent</a>
+<a id="fallback-custom-scheme" class="btn">Custom scheme</a>
+
 
 <script>
   const params = new URLSearchParams(window.location.search);
@@ -37,21 +40,18 @@
   const appLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
   const fallbackIntent =
     `intent://open?screen=${screen}` +
-    `#Intent;scheme=https;package=com.loba.sf.connector.softpos;end;`;
+    `#Intent;scheme=sfsoftpos;package=com.loba.sf.connector.softpos;end;`;
   
   const fallbackCustomScheme = `sfsoftpos://open?screen=screen1`;
 
-  window.onload = () => {
-    document.getElementById("fallback-deep-intent").href = fallbackIntent;
-    document.getElementById("fallback-custom-scheme").href = fallbackCustomScheme;
-  };
+  document.getElementById("fallback-deep-intent").href = fallbackIntent;
+  document.getElementById("fallback-custom-scheme").href = fallbackCustomScheme;
 
   // Try to open the app WITHOUT reloading this page into a loop
-  window.location.replace(fallbackIntent);
+  window.location = fallbackIntent;
 </script>
 
-<a id="fallback-deep-intent" class="btn">Android deep intent</a>
-<a id="fallback-custom-scheme" class="btn">Custom scheme</a>
+
 
 </body>
 </html>
