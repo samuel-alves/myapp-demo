@@ -34,15 +34,25 @@
 
 <script>
   const params = new URLSearchParams(window.location.search);
-  const screen = params.get("screen") || "default";
+
+  const action = params.get("action") || "default";
+  const reference = params.get("reference");
+  const amount = params.get("amount");
+  const gratuityAmount = params.get("gratuityAmount");
+
+  let queryParams = `action=${action}`;
+  queryParams += `&reference=${reference}`;
+  queryParams += `&amount=${amount}`;
+  queryParams += `&gratuityAmount=${gratuityAmount}`;
 
   // Android App Links: Android intercepta este link AUTOMATICAMENTE
-  const appLink = `https://samuel-alves.github.io/myapp-demo/open?screen=${screen}`;
+  const appLink = `https://samuel-alves.github.io/myapp-demo/open?` + queryParams;
+
   const fallbackIntent =
-    `intent://open?screen=${screen}` +
+    `intent://open?` + queryParams + 
     `#Intent;scheme=sfsoftpos;package=com.loba.sf.connector.softpos;end;`;
   
-  const fallbackCustomScheme = `sfsoftpos://open?screen=screen1`;
+  const fallbackCustomScheme = `sfsoftpos://open?` + queryParams;
 
   document.getElementById("fallback-deep-intent").href = fallbackIntent;
   document.getElementById("fallback-custom-scheme").href = fallbackCustomScheme;
