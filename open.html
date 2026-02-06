@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Opening App...</title>
+  <title>SF SoftPOS Connector</title>
   <style>
     body { 
       font-family: Arial, sans-serif;
@@ -26,10 +26,13 @@
 <body>
 
 <h1>Opening your app...</h1>
-<p>If the app does not open automatically, tap the button below.</p>
 
-<a id="fallback-deep-intent" class="btn">Android deep intent</a>
-<a id="fallback-custom-scheme" class="btn">Custom scheme</a>
+<div id="fallback-options" hidden>
+  <p>If the app does not open automatically, tap the button below.</p>
+
+  <a id="fallback-deep-intent" class="btn">Android deep intent</a>
+  <a id="fallback-custom-scheme" class="btn">Custom scheme</a>
+</div>
 
 
 <script>
@@ -59,6 +62,10 @@
 
   // Try to open the app WITHOUT reloading this page into a loop
   window.location = fallbackIntent;
+
+  setTimeout(()=> {
+    document.getElementById("fallback-options").hidden = false;
+  }, 2000);
 </script>
 
 
