@@ -29,6 +29,38 @@
   <h1>Launch SF SoftPOS Connector</h1>
   <p>Tap one of the buttons below to open the Android app:</p>
 
-  <a class="btn" href="./open.html?action=default">Default</a>
+  <form id="launchForm" onsubmit="handleSubmit(event)">
+    <div style="margin: 20px 0;">
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" step="0.01" required />
+    </div>
+    <div style="margin: 20px 0;">
+      <label for="reference">Reference:</label>
+      <input type="text" id="reference" name="reference" required />
+    </div>
+    <div style="margin: 20px 0;">
+      <label for="gratuityamount">Gratuity Amount:</label>
+      <input type="number" id="gratuityamount" name="gratuityamount" step="0.01" />
+    </div>
+    <button type="submit" class="btn" style="background: #0055ff; border: none; cursor: pointer;">Launch</button>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const amount = document.getElementById('amount').value;
+      const reference = document.getElementById('reference').value;
+      const gratuityamount = document.getElementById('gratuityamount').value;
+      
+      const params = new URLSearchParams({
+        action: 'payment',
+        amount: amount,
+        reference: reference,
+        gratuityamount: gratuityamount || ''
+      });
+      
+      window.location.href = `./open.html?${params.toString()}`;
+    }
+  </script>
 </body>
 </html>
